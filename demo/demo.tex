@@ -1,7 +1,9 @@
 \documentclass[10pt]{beamer}
 
+%%%%%%%%%% Beamer Setup %%%%%%%%%%
 \usetheme{metropolis}
-\usepackage{appendixnumberbeamer}
+%\usetheme[progressbar=frametitle, numbering=fraction]{metropolis} % Add slide numbers
+%\metroset{sectionpage=none} % On if I don't want section title slides
 
 % Add navigation dots at the bottom
 \makeatletter
@@ -16,6 +18,21 @@
 }
 \makeatother
 
+% Notes settings
+\setbeameroption{hide notes} % Only slides
+%\setbeameroption{show only notes} % Only notes
+%\setbeameroption{show notes on second screen=right} % Both
+\setbeamertemplate{note page}{\pagecolor{yellow!5}\insertnote}\usepackage{palatino} % Give a slight yellow tint to the notes page
+
+% Bullet point icons and sizes
+\setbeamertemplate{itemize item}[square]
+\setbeamertemplate{itemize subitem}[circle]
+\setbeamerfont{itemize/enumerate subbody}{size=\scriptsize}
+
+
+%%%%%%%%%% Packages %%%%%%%%%%
+
+\usepackage{appendixnumberbeamer}
 
 \usepackage{booktabs}
 \usepackage[scale=2]{ccicons}
@@ -26,12 +43,24 @@
 \usepackage{xspace}
 \newcommand{\themename}{\textbf{\textsc{metropolis}}\xspace}
 
+% Bibliography
+\usepackage[round]{natbib}
+\bibliographystyle{abbrvnat}
+
+\usepackage{graphicx}
+
+\usepackage{caption}
+
+%%%%%%%%%% Title Page Content %%%%%%%%%%
+
 \title{Modified Metropolis}
 \subtitle{A modern beamer theme}
 \date{\today}
 \author{Sakina Shibuya}
 \institute{University of Wisconsin-Madison}
 % \titlegraphic{\hfill\includegraphics[height=1.5cm]{logo.pdf}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Preemple Ends %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
 
@@ -327,24 +356,28 @@ or show \textbf{bold} results.\end{verbatim}
   Questions?
 \end{frame}
 
-\appendix
 
-\begin{frame}[fragile]{Backup slides}
-  Sometimes, it is useful to add slides at the end of your presentation to
-  refer to during audience questions.
+{
+	\appendix
+	
+	\begin{frame}[fragile]{Backup slides}
+		Sometimes, it is useful to add slides at the end of your presentation to
+		refer to during audience questions.
+		
+		The best way to do this is to include the \verb|appendixnumberbeamer|
+		package in your preamble and call \verb|\appendix| before your backup slides.
+		
+		\themename will automatically turn off slide numbering and progress bars for
+		slides in the appendix.
+	\end{frame}
+	
+	\begingroup
+	\small
+	\begin{frame}<0>[allowframebreaks]
+		\bibliography{bibliography}
+	\end{frame}
+	\endgroup
+}
 
-  The best way to do this is to include the \verb|appendixnumberbeamer|
-  package in your preamble and call \verb|\appendix| before your backup slides.
-
-  \themename will automatically turn off slide numbering and progress bars for
-  slides in the appendix.
-\end{frame}
-
-\begin{frame}[allowframebreaks]{References}
-
-  \bibliography{demo}
-  \bibliographystyle{abbrv}
-
-\end{frame}
 
 \end{document}
